@@ -3,6 +3,7 @@ import CardDiv from "./AllCard/CardDiv";
 import Banner from "./component/banner"
 import Nav from "./component/nav"
 import type { Itechnologies } from "./types/type";
+import Footer from "./component/footer";
 
 
 const TechnologiesFatch = async ():Promise<Itechnologies[]> => {
@@ -23,6 +24,8 @@ function App() {
       <Suspense fallback={<h2>Loading.........</h2>}>
         <CardDiv technologiespromise={Technologiespromise}></CardDiv>
       </Suspense>
+
+      <Footer></Footer>
 
 
     </>
