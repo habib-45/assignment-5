@@ -9,26 +9,16 @@ interface Cardprops {
 const CardDiv = ({ technologiespromise }: Cardprops) => {
 
     const carddiv = use(technologiespromise);
-
     const [card, setCard] = useState<Itechnologies[]>([]);
-
-    // Add to Stack
     const handIaddToCard = (technology: Itechnologies) => {
-
-        // একই technology আবার add হবে না
         if (card.some(item => item.id === technology.id)) {
             return;
         }
-
         setCard([...card, technology]);
     };
-
-    // Single technology remove
     const handleRemoveFromCard = (id: string) => {
         setCard(card.filter(item => item.id !== id));
     };
-
-    // Remove All
     const handleRemoveAll = () => {
         setCard([]);
     };

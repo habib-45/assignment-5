@@ -1,6 +1,7 @@
 import type { Itechnologies } from '../types/type';
 import { FaStar } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import SelectedStack from './SelectedStack';
 
 interface TecnologeCardProps {
     carddiv: Itechnologies[];
@@ -42,7 +43,7 @@ const TecnologeCard = ({
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
 
-               
+
                 <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 
                     {carddiv.map((item) => {
@@ -100,7 +101,7 @@ const TecnologeCard = ({
                                         disabled={isAdded}
                                         className="btn btn-neutral btn-block btn-sm rounded-lg"
                                     >
-                                        {isAdded ? 'Added ✓' : 'Add to Stack'}
+                                        {isAdded ? 'Only Select ✓' : 'Add to Stack'}
                                     </button>
 
                                 </div>
@@ -110,10 +111,10 @@ const TecnologeCard = ({
 
                 </div>
 
-                
+
                 <div className="lg:col-span-1">
 
-                    <div className="border border-gray-100 rounded-2xl p-6 bg-white shadow-sm sticky top-6">
+                    <div className="border border-gray-100 rounded-2xl p-6 bg-white top-6">
 
                         <h2 className="font-bold text-lg text-slate-800">
                             Your Stack
@@ -132,58 +133,11 @@ const TecnologeCard = ({
                             </div>
 
                         ) : (
-
-                            <>
-                                <div className="space-y-3">
-
-                                    {card.map((item) => (
-
-                                        <div
-                                            key={item.id}
-                                            className="flex items-center justify-between border border-gray-100 rounded-xl p-3"
-                                        >
-                                            <div className="flex items-center gap-3">
-
-                                                <img
-                                                    src={item.icon}
-                                                    alt={item.name}
-                                                    className="w-8 h-8 object-contain"
-                                                />
-
-                                                <div>
-                                                    <h3 className="font-semibold text-sm text-slate-800">
-                                                        {item.name}
-                                                    </h3>
-
-                                                    <p className="text-xs text-gray-400">
-                                                        {item.category}
-                                                    </p>
-                                                </div>
-
-                                            </div>
-
-                                            <button
-                                                onClick={() => handleRemove(item)}
-                                                className="text-gray-400 hover:text-red-500 text-xl"
-                                            >
-                                                ×
-                                            </button>
-
-                                        </div>
-                                    ))}
-
-                                </div>
-
-                                <button
-                                    onClick={() => {
-                                        handleRemoveAll();
-                                        toast.success('All technologies removed!');
-                                    }}
-                                    className="btn btn-neutral btn-block btn-sm rounded-lg mt-4"
-                                >
-                                    Remove All
-                                </button>
-                            </>
+                            <SelectedStack
+                                card={card}
+                                handleRemove={handleRemove}
+                                handleRemoveAll={handleRemoveAll}
+                            />
                         )}
                     </div>
                 </div>
