@@ -1,32 +1,69 @@
-# React + TypeScript + Vite
+# 🚀 Technology Stack Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern and responsive web application that allows users to explore different technologies and build their own personalized technology stack.
 
-Currently, two official plugins are available:
+Users can view technology details, add their favorite technologies to their stack, remove individual technologies, or clear the entire stack.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Technologies Used
 
-## React Compiler
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* DaisyUI
+* React Icons
+* React Toastify
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the Oxlint configuration
+### 1. 🔍 Explore Technologies
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Users can explore different technologies with their name, category, difficulty, rating, badge, and description.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+### 2. ➕ Build Your Own Stack
+
+Users can add their favorite technologies to **Your Stack** and easily see all selected technologies.
+
+### 3. 🗑️ Manage Your Stack
+
+Users can remove individual technologies or remove all selected technologies at once. Toast notifications provide instant feedback for each action.
+
+## 📱 Responsive Design
+
+The application is responsive and works smoothly on:
+
+* 📱 Mobile devices
+* 💻 Tablets
+* 🖥️ Desktop screens
+
+## 🚀 Installation
+
+Clone the repository:
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Go to the project folder:
+
+```bash
+cd assignment-5
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## 👨‍💻 Author
+
+**Md Habibullah**
+
+Built with ❤️ using React, TypeScript, and Tailwind CSS.

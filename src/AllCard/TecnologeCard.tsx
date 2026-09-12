@@ -1,5 +1,6 @@
 import type { Itechnologies } from '../types/type';
 import { FaStar } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 interface TecnologeCardProps {
     carddiv: Itechnologies[];
@@ -17,22 +18,32 @@ const TecnologeCard = ({
     handleRemoveAll
 }: TecnologeCardProps) => {
 
-    return (
-        <main className="container mx-auto pb-5">
+    const handleAdd = (item: Itechnologies) => {
+        handIaddToCard(item);
+        toast.success(`${item.name} added to your stack!`);
+    };
 
-            <section className="mb-6">
+    const handleRemove = (item: Itechnologies) => {
+        handleRemoveFromCard(item.id);
+        toast.error(`${item.name} removed!`);
+    };
+
+    return (
+        <div className="container mx-auto pb-5">
+
+            <div className="mb-6">
                 <h1 className="text-3xl font-bold">
                     Explore the <span className="text-pink-500">Technologies</span>
                 </h1>
-
                 <p className="text-gray-500 text-sm mt-1">
                     Pick one technology per category to build your ideal stack.
                 </p>
-            </section>
+            </div>
 
-            <section className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
 
-                <section className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+               
+                <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 
                     {carddiv.map((item) => {
 
@@ -41,28 +52,23 @@ const TecnologeCard = ({
                         );
 
                         return (
-                            <article
+                            <div
                                 key={item.id}
                                 className="card bg-base-100 border border-gray-100 p-5 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-all"
                             >
+                                <div>
 
-                                <section>
-
-                                    <header className="flex justify-between items-center mb-3">
-
-                                        <figure>
-                                            <img
-                                                src={item.icon}
-                                                alt={item.name}
-                                                className="w-10 h-10 object-contain"
-                                            />
-                                        </figure>
+                                    <div className="flex justify-between items-center mb-3">
+                                        <img
+                                            src={item.icon}
+                                            alt={item.name}
+                                            className="w-10 h-10 object-contain"
+                                        />
 
                                         <button className="btn btn-xs btn-soft btn-success">
                                             {item.badge}
                                         </button>
-
-                                    </header>
+                                    </div>
 
                                     <h2 className="font-bold text-lg text-slate-800">
                                         {item.name}
@@ -72,48 +78,42 @@ const TecnologeCard = ({
                                         {item.description}
                                     </p>
 
-                                </section>
+                                </div>
 
-                                <section>
+                                <div>
 
                                     <div className="flex items-center justify-between text-xs my-4 text-gray-500">
-
                                         <span className="badge badge-ghost badge-sm">
                                             {item.category}
                                         </span>
 
-                                        <span>
-                                            {item.difficulty}
-                                        </span>
+                                        <span>{item.difficulty}</span>
 
-                                        <p className="flex items-center gap-1 font-semibold text-slate-700">
+                                        <span className="flex items-center gap-1 font-semibold text-slate-700">
                                             <FaStar className="text-amber-400" />
                                             {item.rating}
-                                        </p>
-
+                                        </span>
                                     </div>
 
                                     <button
-                                        onClick={() => handIaddToCard(item)}
+                                        onClick={() => handleAdd(item)}
                                         disabled={isAdded}
                                         className="btn btn-neutral btn-block btn-sm rounded-lg"
                                     >
                                         {isAdded ? 'Added ✓' : 'Add to Stack'}
                                     </button>
 
-                                </section>
-
-                            </article>
+                                </div>
+                            </div>
                         );
                     })}
 
-                </section>
+                </div>
 
-                {/* Your Stack */}
+                
+                <div className="lg:col-span-1">
 
-                <aside className="lg:col-span-1">
-
-                    <section className="border border-gray-100 rounded-2xl p-6 bg-white shadow-sm sticky top-6">
+                    <div className="border border-gray-100 rounded-2xl p-6 bg-white shadow-sm sticky top-6">
 
                         <h2 className="font-bold text-lg text-slate-800">
                             Your Stack
@@ -122,8 +122,7 @@ const TecnologeCard = ({
                         <p className="text-xs text-gray-400 mt-1 mb-6">
                             {card.length === 0
                                 ? 'No technologies selected yet.'
-                                : `${card.length} technologies selected.`
-                            }
+                                : `${card.length} technologies selected.`}
                         </p>
 
                         {card.length === 0 ? (
@@ -135,16 +134,14 @@ const TecnologeCard = ({
                         ) : (
 
                             <>
-
-                                <section className="space-y-3">
+                                <div className="space-y-3">
 
                                     {card.map((item) => (
 
-                                        <article
+                                        <div
                                             key={item.id}
                                             className="flex items-center justify-between border border-gray-100 rounded-xl p-3"
                                         >
-
                                             <div className="flex items-center gap-3">
 
                                                 <img
@@ -166,36 +163,32 @@ const TecnologeCard = ({
                                             </div>
 
                                             <button
-                                                onClick={() => handleRemoveFromCard(item.id)}
+                                                onClick={() => handleRemove(item)}
                                                 className="text-gray-400 hover:text-red-500 text-xl"
                                             >
                                                 ×
                                             </button>
 
-                                        </article>
-
+                                        </div>
                                     ))}
 
-                                </section>
+                                </div>
 
                                 <button
-                                    onClick={handleRemoveAll}
+                                    onClick={() => {
+                                        handleRemoveAll();
+                                        toast.success('All technologies removed!');
+                                    }}
                                     className="btn btn-neutral btn-block btn-sm rounded-lg mt-4"
                                 >
                                     Remove All
                                 </button>
-
                             </>
-
                         )}
-
-                    </section>
-
-                </aside>
-
-            </section>
-
-        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 
